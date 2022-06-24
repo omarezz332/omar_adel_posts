@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,12 +14,14 @@ import 'generated/codegen_loader.g.dart';
 import 'helpers/app_shared_prefs.dart';
 
 Future<void> main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   // custom initial helpers
   await EasyLocalization.ensureInitialized();
   await AppSharedPrefs.ensureInit();
 
   await EasyLocalization.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(ProviderScope(
     child: EasyLocalization(
       path: 'assets/translations',

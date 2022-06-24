@@ -14,6 +14,7 @@ ThemeData getThemeData(ThemeFlavor themeFlavor, {required bool isAr}) {
     fontFamily: isAr ? 'Almarai' : 'segoe',
     primaryColor:isLight? kPrimaryColor:kDarkPrimaryColor ,
 
+
     scaffoldBackgroundColor: kBackgroundColor,
     canvasColor: kCanvasColor,
     errorColor: kErrorColor,
