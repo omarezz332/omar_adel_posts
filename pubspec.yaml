@@ -42,6 +42,8 @@ dependencies:
   #UI
   flutter_screenutil: ^5.3.1
   overlay_support: ^2.0.1
+  image_picker: ^0.8.5+3
+  cached_network_image: ^3.2.0
   #helpers
   auto_route: ^3.2.4
   intl: ^0.17.0

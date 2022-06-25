@@ -100,7 +100,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                                context,
                                LocaleKeys.user_actions_register_successfully
                                    .tr(),
-                               "${m}", () {
+                               "", () {
                              AutoRouter.of(context).pop();
                            });
                          });

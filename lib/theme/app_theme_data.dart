@@ -13,6 +13,7 @@ ThemeData getThemeData(ThemeFlavor themeFlavor, {required bool isAr}) {
   return ThemeData(
     fontFamily: isAr ? 'Almarai' : 'segoe',
     primaryColor:isLight? kPrimaryColor:kDarkPrimaryColor ,
+    backgroundColor: isLight ? kGreyColor : kDarkBackgroundColor,
 
 
     scaffoldBackgroundColor: kBackgroundColor,

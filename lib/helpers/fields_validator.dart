@@ -66,6 +66,15 @@ String? maxPostCodeLength(
     return null;
   }
 }
+String? maxPostTextLength(
+    String? value,
+    ) {
+  if (value!.length > 200) {
+    return tr('validation.last_name_long');
+  } else {
+    return null;
+  }
+}
 
 String? validateEmail(String? value) {
   const pattern =

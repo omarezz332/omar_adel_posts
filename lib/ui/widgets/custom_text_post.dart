@@ -3,17 +3,17 @@ import '../../helpers/extensions.dart';
 import '../../helpers/sized_boxes.dart';
 import '../../theme/dimensions.dart';
 
-class CustomTextField extends StatefulWidget {
+class CustomTextPost extends StatefulWidget {
   final CustomTextFieldModel customTextFieldModel;
 
-  const CustomTextField({Key? key, required this.customTextFieldModel})
+  const CustomTextPost({Key? key, required this.customTextFieldModel})
       : super(key: key);
 
   @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
+  State<CustomTextPost> createState() => _CustomTextPostState();
 }
 
-class _CustomTextFieldState extends State<CustomTextField> {
+class _CustomTextPostState extends State<CustomTextPost> {
   bool obscure = true;
   @override
   Widget build(BuildContext context) {
@@ -37,9 +37,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
           kVerticalSizedBoxXXSmall,
           TextFormField(
-            maxLength: widget.customTextFieldModel.maxLength,
             enabled: widget.customTextFieldModel.enabled,
-            style: context.textTheme.labelLarge,
+            style: context.textTheme.headline5,
             controller: widget.customTextFieldModel.controller,
             initialValue: widget.customTextFieldModel.controller == null
                 ? widget.customTextFieldModel.initialValue
@@ -114,7 +113,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               hintText: widget.customTextFieldModel.hint,
               hintStyle: context.textTheme.button!.copyWith(
                 color: context.theme.shadowColor,
-                fontFamily: 'Almarai',
+                fontFamily: 'segoe',
                 fontWeight: FontWeight.w300,
               ),
             ),
@@ -128,7 +127,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
 class CustomTextFieldModel {
   final String label;
   final String hint;
-  final int? maxLength;
   final Function(String? value)? onSave;
   final String? Function(String? value)? validator;
   final bool isPassword;
@@ -143,7 +141,7 @@ class CustomTextFieldModel {
   final TextStyle? hintStyle;
   final TextStyle? labelStyle;
   final Color? backgroundColor;
-  final int? maxLine;
+  final int maxLine;
   final bool isSearch;
   final bool borderInIcon;
   final Function(String)? onChange;
@@ -169,6 +167,5 @@ class CustomTextFieldModel {
     this.isSearch = false,
     this.borderInIcon = false,
     this.onChange,
-    this.maxLength,
   });
 }

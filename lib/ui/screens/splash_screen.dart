@@ -1,9 +1,13 @@
+import 'dart:developer';
+
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../helpers/extensions.dart';
 import '../../providers/authentication_provider/authentication_notifier.dart';
 import '../../providers/authentication_provider/authentication_state.dart';
+import '../../providers/token_repository_provider.dart';
 import '../../router/custom_router.gr.dart';
 
 
@@ -25,9 +29,11 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   Future<void> navigateToScreen() async {
     ref.read(authenticationNotifierProvider.notifier).init();
     Future.delayed(const Duration(seconds: 2), () {
-      final isAuth = ref.read(authenticationNotifierProvider) is Authenticated;
+    //  final isAuth = ref.read(authenticationNotifierProvider) is Authenticated;
+      final hasToken= ref.read(tokenRepositoryProvider).hasToken;
+      log('hasToken: $hasToken');
       AutoRouter.of(context).pushAndPopUntil(
-        isAuth ? const HomeRoute() : const AuthRoute(),
+        hasToken ? const HomeRoute() : const AuthRoute(),
         predicate: (_) => false,
       );
     });

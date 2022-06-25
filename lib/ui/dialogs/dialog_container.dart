@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../helpers/extensions.dart';
 import '../../theme/dimensions.dart';
 
-class DialogContainer extends StatelessWidget {
+class DialogContainer extends StatefulWidget {
   final Color? backgroundColor;
   final bool noCloseIcon;
   final List<Widget> children;
@@ -17,9 +17,14 @@ class DialogContainer extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<DialogContainer> createState() => _DialogContainerState();
+}
+
+class _DialogContainerState extends State<DialogContainer> {
+  @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: backgroundColor ?? context.colorScheme.surface,
+      backgroundColor: widget.backgroundColor ?? context.colorScheme.surface,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       insetPadding: const EdgeInsets.symmetric(
         horizontal: 12,
@@ -32,7 +37,7 @@ class DialogContainer extends StatelessWidget {
       title: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (!noCloseIcon)
+          if (!widget.noCloseIcon)
             Align(
               alignment: AlignmentDirectional.centerEnd,
               child: IconButton(
@@ -40,9 +45,9 @@ class DialogContainer extends StatelessWidget {
                 icon: const Icon(Icons.close),
               ),
             ),
-          if (title.isNotEmpty)
+          if (widget.title.isNotEmpty)
             Text(
-              title,
+              widget.title,
               style: context.textTheme.subtitle1,
               textAlign: TextAlign.center,
             ),
@@ -59,7 +64,7 @@ class DialogContainer extends StatelessWidget {
               child: SizedBox(
                 width: context.width,
                 child: Column(
-                  children: children,
+                  children: widget.children,
                 ),
               ),
             )

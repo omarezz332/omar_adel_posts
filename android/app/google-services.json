@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "666643147896",
+    "firebase_url": "https://omaradelposts-default-rtdb.firebaseio.com",
+    "project_id": "omaradelposts",
+    "storage_bucket": "omaradelposts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666643147896:android:abdb5d8d28cc7f0a87518d",
+        "android_client_info": {
+          "package_name": "com.example.omar_adel_posts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "666643147896-en1f8g0tbftp1i57f5135ccfu4eapqpo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh537BTOS84JFSpSJSJpA5cFOLzlkuS5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "666643147896-en1f8g0tbftp1i57f5135ccfu4eapqpo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -37,18 +37,22 @@ class AuthenticationNotifier extends StateNotifier<AuthenticationState> {
   ) : super(const AuthenticationInitial());
 
   Future<void> init() async {
-    if (_tokenRepositoryProvider.token.isNotEmpty) {
-      await _tokenRepositoryProvider.getToken();
-        state = Authenticated(_tokenRepositoryProvider.token);
-    }
-  }
 
+      await _tokenRepositoryProvider.getToken();
+      await _tokenRepositoryProvider.getUser();
+      log(_tokenRepositoryProvider.user.toString());
+      state=Authenticated(_tokenRepositoryProvider.user);//state = Authenticated(_userRepository.get());
+
+  }
+  User? get user => state is Authenticated
+      ? (state as Authenticated).user
+      : null;
   Future<void> login() async {
     state = const AuthenticationLoading();
     try {
       final response = await _api.login(_loginFieldProvider.loginRequest);
       await saveAuthData(response!);
-      state = Authenticated(response.uid);
+      state = Authenticated(response);
     } catch (e) {
       state = const AuthenticationInitial();
       rethrow;
@@ -57,6 +61,7 @@ class AuthenticationNotifier extends StateNotifier<AuthenticationState> {
 
   Future<void> saveAuthData(User user) async {
     await _tokenRepositoryProvider.setToken(user.uid);
+    await _tokenRepositoryProvider.setUser(user);
   }
 
 

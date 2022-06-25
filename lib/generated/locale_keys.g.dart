@@ -73,6 +73,11 @@ abstract class  LocaleKeys {
   static const user_actions_to = 'user_actions.to';
   static const user_actions_edit = 'user_actions.edit';
   static const user_actions_yes = 'user_actions.yes';
+  static const user_actions_publish= 'user_actions.publish';
+  static const user_actions_write_commint= 'user_actions.write_commint';
+  static const user_actions_upload_image= 'user_actions.upload_image';
+  static const user_actions_ignore= 'user_actions.ignore';
+  static const user_actions_Main= 'user_actions.Main';
   static const user_actions_no = 'user_actions.no';
   static const user_actions_cancel = 'user_actions.cancel';
   static const user_actions_add_stop = 'user_actions.add_stop';

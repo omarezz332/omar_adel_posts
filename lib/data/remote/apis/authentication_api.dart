@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,9 +24,9 @@ class AuthenticationApi implements IAuthenticationApi {
 
   @override
   Future<User?> login(LoginRequest request) async {
-    final url = Uri.parse(kSignIn);
+    //final url = Uri.parse(kPosts);
     final response = await _firebaseAuth.signInWithEmailAndPassword(email: request.email, password: request.password);
-  //final response = await http.post(url, body:  request.toJson());
+
     log(response.toString());
 return response.user;
     // final LoginData successResponse =

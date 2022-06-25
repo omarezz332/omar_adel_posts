@@ -27,8 +27,8 @@ class UserData {
         this.avatar,
         this.profileBackgroundImage,
 });
-      factory UserData.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-      Map<String, dynamic> toJson() => _$UserToJson(this);
+      factory UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);
+      Map<String, dynamic> toJson() => _$UserDataToJson(this);
 
 }
 
