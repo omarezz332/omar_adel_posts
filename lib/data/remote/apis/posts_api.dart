@@ -30,6 +30,7 @@ class PostsApi implements IPostsApi {
    // log(post.image ?? 'no image');
     log(post.toJson().toString() );
     final response = await http.post(url,body: json.encode(post.toJson()));
+    json.decode(response.body)['name'];
 log("kafjsklfaskl $response");
 return response;
 
@@ -38,13 +39,29 @@ return response;
   }
 
   @override
-  Future<List<Posts>> fetchPosts( String token ) async {
+  Future<List<Posts>> fetchPosts(  ) async {
     List<Posts> posts = [];
 
-final url = Uri.parse('https://omaradelposts-default-rtdb.firebaseio.com/posts.json/$token.json?auth=$token');
+final url = Uri.parse('https://omaradelposts-default-rtdb.firebaseio.com/posts.json');
 final response = await http.get(url);
-     log(response.toString());
-   posts.add( Posts.fromJson(response as Map<String, dynamic>));
+     log(response.body.toString());
+    final extractedData = json.decode(response.body) as Map<String, dynamic>;
+
+    extractedData.forEach((userId, orderData) {
+      orderData.forEach((id, value) {
+          posts.add(Posts(
+            userId:userId ,
+            id: id,
+            image: value['image'],
+            description: value['description'],
+            isLiked: value['isLiked'],
+            likes: value['likes'],
+            isSaved: value['isSaved'],
+          ));
+      });
+
+    });
+log(posts[0].toJson().toString());
     return posts;
      // final LoginData successResponse =
     // LoginData.fromJson(response as Map<String, dynamic>);
