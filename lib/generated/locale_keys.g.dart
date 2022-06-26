@@ -5,6 +5,8 @@ abstract class  LocaleKeys {
   static const english = 'english';
   static const arabic = 'arabic';
   static const user_actions_change_language = 'user_actions.change_language';
+  static const user_actions_saved_posts = 'user_actions.saved_posts';
+  static const user_actions_no_saved_posts = 'user_actions.no_saved_posts';
   static const user_actions_login = 'user_actions.login';
   static const user_actions_register = 'user_actions.register';
   static const user_actions_signup = 'user_actions.signup';

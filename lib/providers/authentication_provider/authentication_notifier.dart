@@ -8,6 +8,7 @@ import '../../data/local/repositories/user_repository.dart';
 import '../../data/remote/apis/authentication_api.dart';
 import '../../data/remote/interfaces/i_authentication_api.dart';
 import '../../models/core/login_data.dart';
+import '../../models/core/post.dart';
 import '../../models/core/user.dart';
 import '../fields_providers/login_field_provider.dart';
 import '../posts_provider/token_repository_provider.dart';
@@ -69,7 +70,6 @@ class AuthenticationNotifier extends StateNotifier<AuthenticationState> {
     await _tokenRepositoryProvider.setToken(user.uid);
     await _tokenRepositoryProvider.setUser(user);
   }
-
 
 
   Future<void> logout() async {

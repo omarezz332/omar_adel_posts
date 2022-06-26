@@ -3,6 +3,7 @@ import 'package:omar_adel_posts/router/custom_router.gr.dart';
 
 import '../ui/screens/auth_screen.dart';
 import '../ui/screens/home_screen.dart';
+import '../ui/screens/my_saved_posts_screen.dart';
 import '../ui/screens/register_screen.dart';
 import '../ui/screens/splash_screen.dart';
 
@@ -11,7 +12,8 @@ import '../ui/screens/splash_screen.dart';
     routes: <AutoRoute>[
       AutoRoute(page: SplashScreen,initial: true),
       AutoRoute(page: HomeScreen),
-      AutoRoute(page: AuthScreen),AutoRoute(page: RegisterScreen),
+      AutoRoute(page: AuthScreen),
+      AutoRoute(page: RegisterScreen), AutoRoute(page: MySavedPostsScreen),
     ]
 )
 class $AppRouter {}

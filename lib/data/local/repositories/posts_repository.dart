@@ -40,6 +40,7 @@ class PostsRepository implements IPostsRepository {
               description: value['description'],
               isLiked: value['isLiked'],
               likes: value['likes'],
+              saves: value['saves'],
               isSaved: value['isSaved'],
             ));
           });

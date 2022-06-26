@@ -32,6 +32,8 @@ class _CustomListState extends ConsumerState<CustomList> {
           itemCount: posts.length,
           itemBuilder: (context, index) {
             return Card(
+              color: Colors.white,
+              elevation:10,
               child: Column(
                 children: [
                   _iconeRow(posts, index),
@@ -106,7 +108,7 @@ class _CustomListState extends ConsumerState<CustomList> {
                           posts[index].saves?.add(token);
 
                         } else {
-                          posts[index].saves!.remove(token);
+                          posts[index].saves?.remove(token);
 
                         }
                         ref
@@ -141,7 +143,7 @@ class _CustomListState extends ConsumerState<CustomList> {
                               .read(postsNotifierProvider.notifier)
                               .updatePost(posts[index]);
                         } else {
-                          posts[index].likes!.remove(token);
+                          posts[index].likes?.remove(token);
                           ref
                               .read(postsRepositoryProvider.notifier)
                               .updatePosts(posts);

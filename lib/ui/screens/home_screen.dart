@@ -27,6 +27,7 @@ class _MyHomePageState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     ref.read(postsNotifierProvider.notifier).init();
     return Scaffold(
+      backgroundColor: context.theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text(LocaleKeys.user_actions_Main.tr()),
       ),

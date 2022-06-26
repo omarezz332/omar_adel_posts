@@ -55,6 +55,7 @@ final response = await http.get(url);
             description: value['description'],
             isLiked: value['isLiked'],
             likes: value['likes'] ,
+            saves: value['saves'],
             isSaved: value['isSaved'],
           ));
       });

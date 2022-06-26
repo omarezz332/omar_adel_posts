@@ -64,6 +64,16 @@ class PostsNotifier extends StateNotifier<PostsState> {
     //     state = Posted(_tokenRepositoryProvider.token);
     // }
   }
+  List<Posts> get savedPosts {
+    List<Posts> _savedPosts = [];
+    _postsRepositoryProvider.posts.forEach((post) {
+      if (post.saves!.contains(_tokenRepositoryProvider.token)) {
+        _savedPosts.add(post);
+      }
+    });
+    return _savedPosts;
+
+  }
 
   Future<void> addPost() async {
     state = const PostsLoading();
