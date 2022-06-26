@@ -43,17 +43,19 @@ class PostsNotifier extends StateNotifier<PostsState> {
   ) : super(const PostsInitial());
 
   Future<void> init() async {
-   // state = const PostsLoading();
-    if(_postsRepositoryProvider.posts.isEmpty) {
 
-      if (_tokenRepositoryProvider.hasToken) {
-        final posts = await _api.fetchPosts();
-      //  _postsRepositoryProvider.setPost(posts);
-
+      if (_postsRepositoryProvider.posts.isEmpty) {
+        state = const PostsLoading();
+        log("trying to get posts");
+        final Map map = await _api.fetchPosts();
+       await _postsRepositoryProvider.setPost(map['posts'], map['extractedData']);
+        log("got posts${map['posts'].length}");
       }
-    }
-    else
-      await  _postsRepositoryProvider.getPosts();
+      else {
+        await  _postsRepositoryProvider.getPosts();
+      }
+
+
 
     state = const Posted();
    // _postsRepositoryProvider.getPosts();
@@ -66,14 +68,26 @@ class PostsNotifier extends StateNotifier<PostsState> {
   Future<void> addPost() async {
     state = const PostsLoading();
     try {
-    await _api.addPost(
+   final response = await _api.addPost(
           _postFieldProvider.post, _tokenRepositoryProvider.token);
+   _postFieldProvider.post.id=json.decode(response.body)['name'];
       _postsRepositoryProvider.posts.add(_postFieldProvider.post);
-      _postsRepositoryProvider.setPost(_postsRepositoryProvider.posts);
-
-
-      state = Posted();
-
+    final Map map = await _api.fetchPosts();
+    _postsRepositoryProvider.setPost(map['posts'], map['extractedData']);
+      state = const Posted();
+    } catch (e) {
+      state = const PostsInitial();
+      rethrow;
+    }
+  }
+  Future<void> updatePost(Posts post) async {
+   // state = const PostsLoading();
+    try {
+      await _api.updatePosts(
+          post, _tokenRepositoryProvider.token);
+      _postsRepositoryProvider.posts.add(_postFieldProvider.post);
+      final Map map = await _api.fetchPosts();
+      _postsRepositoryProvider.setPost(map['posts'], map['extractedData']);
       state = const Posted();
     } catch (e) {
       state = const PostsInitial();

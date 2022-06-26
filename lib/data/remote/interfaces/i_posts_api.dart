@@ -10,7 +10,8 @@ import '../../../models/core/register_request.dart';
 
 abstract class IPostsApi {
 Future<dynamic> addPost(Posts post, String token);
-Future<List<Posts>> fetchPosts(  );
+Future<Map<String,dynamic>> fetchPosts(  );
+Future<dynamic> updatePosts(Posts post, String token);
 }
 
 

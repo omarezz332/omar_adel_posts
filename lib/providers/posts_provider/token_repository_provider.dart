@@ -21,6 +21,9 @@ class PostsRepositoryProvider extends ChangeNotifier {
   List<Posts> _posts=[];
 
   List<Posts> get posts => _posts;
+  void updatePosts(List<Posts> posts) {
+    _posts = posts;
+  }
 
 
   Future<List<Posts>> getPosts() async {
@@ -35,10 +38,12 @@ log('repositoryPosts: $repositoryPosts');
   }
 
 
-  Future<void> setPost(List<Posts> posts) async {
-    await _postsRepository.setPosts(posts);
+  Future<void> setPost(List<Posts> posts,Map<String,dynamic> extractedData) async {
+    await _postsRepository.setPosts(extractedData);
     _posts = posts;
     log('TokenRepositoryProvider: setToken: ${posts.length}');
+    notifyListeners();
+
   }
 
 }

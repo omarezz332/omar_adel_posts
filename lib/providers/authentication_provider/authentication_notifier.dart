@@ -10,6 +10,7 @@ import '../../data/remote/interfaces/i_authentication_api.dart';
 import '../../models/core/login_data.dart';
 import '../../models/core/user.dart';
 import '../fields_providers/login_field_provider.dart';
+import '../posts_provider/token_repository_provider.dart';
 import '../token_repository_provider.dart';
 import 'authentication_state.dart';
 
@@ -21,6 +22,7 @@ final authenticationNotifierProvider =
     ref.read(loginFieldProviderRef),
     ref.read(tokenRepositoryProvider),
     ref.read(userRepository),
+    ref.read(postsRepositoryProvider),
   ),
 );
 
@@ -29,19 +31,23 @@ class AuthenticationNotifier extends StateNotifier<AuthenticationState> {
   final LoginFieldProvider _loginFieldProvider;
   final TokenRepositoryProvider _tokenRepositoryProvider;
   final IUserRepository _userRepository;
+  final PostsRepositoryProvider _postsRepositoryProvider;
   AuthenticationNotifier(
     this._api,
     this._loginFieldProvider,
     this._tokenRepositoryProvider,
     this._userRepository,
+    this._postsRepositoryProvider,
   ) : super(const AuthenticationInitial());
 
   Future<void> init() async {
 
       await _tokenRepositoryProvider.getToken();
-      await _tokenRepositoryProvider.getUser();
+     // await _tokenRepositoryProvider.getUser();
       log(_tokenRepositoryProvider.user.toString());
-      state=Authenticated(_tokenRepositoryProvider.user);//state = Authenticated(_userRepository.get());
+      state=Authenticated(_tokenRepositoryProvider.user);
+      await  _postsRepositoryProvider.getPosts();
+      log("got posts");
 
   }
   User? get user => state is Authenticated

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-
  Color kPrimaryColor = Color(	fromHex("#15567C"));
  Color kSecondaryColor = Color(fromHex("#F26D33"));
  Color kBackgroundColor = Color(fromHex("#F5F5F5"));

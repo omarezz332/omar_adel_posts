@@ -13,6 +13,7 @@ import '../../providers/posts_provider/posts_state.dart';
 import '../../providers/posts_provider/token_repository_provider.dart';
 import '../dialogs/create_post_dialog.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/custom_list.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -24,11 +25,12 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _MyHomePageState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    ref.watch(postsNotifierProvider.notifier).init();
+    ref.read(postsNotifierProvider.notifier).init();
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.user_actions_Main.tr()),
       ),
+
       drawer: AppDrawer(),
       body: _getposts(),
 
@@ -49,26 +51,10 @@ class _MyHomePageState extends ConsumerState<HomeScreen> {
 
   Widget _getposts() {
     return Consumer(builder: (_, ref, __) {
-      var loading = ref.watch(postsNotifierProvider.notifier).state is PostsLoading ;
-      List<Posts> posts = ref.watch(postsRepositoryProvider).posts;
-      return loading ? Center(child: CircularProgressIndicator())
-          : ListView.builder(
-          itemCount: posts.length,
-          itemBuilder: (context, index) {
-            return Card(
-              child: Column(
-                children: [
-                  Image.memory(
-                  base64Decode(posts[index].image!),
-              height: ScreenUtil().setHeight(200),
-              width: ScreenUtil().setWidth(400),
-              fit: BoxFit.cover,
-            ),
-                  Text(posts[index].description!),
-                ],
-              ),
-            );
-          });
+      var loading = ref.watch(postsNotifierProvider) is PostsLoading ;
+
+      return loading ? const Center(child: CircularProgressIndicator())
+          : CustomList();
     });
   }
 }

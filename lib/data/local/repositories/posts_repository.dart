@@ -25,12 +25,27 @@ class PostsRepository implements IPostsRepository {
     try {
       final hasKey = await _secureStorage.containsKey(key: kPosts);
       if (hasKey) {
+
         final String? _posts = await _secureStorage.read(key: kPosts);
-        if (_posts != '') {
-         // posts = json.decode(_posts).map<Posts>((json) => Posts.fromJson(json)).toList();
-          posts = json.decode(_posts!).map((e) => Posts.fromJson(e)).toList();
-          log('result: ${posts[0]}');
-        }
+        log("hasPosts: $_posts");
+        final Map<String, dynamic> extractedData = json.decode(_posts!);
+        debugPrint("hasPosts: $extractedData");
+
+        extractedData.forEach((userId, orderData) {
+          orderData.forEach((id, value) {
+            posts.add(Posts(
+              userId:userId ,
+              id: id,
+              image: value['image'],
+              description: value['description'],
+              isLiked: value['isLiked'],
+              likes: value['likes'],
+              isSaved: value['isSaved'],
+            ));
+          });
+
+        });
+        log("hasPosts: ${posts[0].description}");
         return posts  ;
       }
       return [];
@@ -40,13 +55,13 @@ class PostsRepository implements IPostsRepository {
     } catch (e) {
       debugPrint(e.toString());
     }finally{
-      return [];
+      return posts;
     }
   }
 
   @override
-  Future<void> setPosts(List<Posts> posts) async {
-    String result = json.encode(posts.map((e) => e.toJson()).toList());
+  Future<void> setPosts(Map<String,dynamic> posts) async {
+    String result = json.encode(posts);
     log('result: $result');
     await _secureStorage.write(key: kPosts, value:result );
 

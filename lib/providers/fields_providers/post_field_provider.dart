@@ -27,6 +27,7 @@ class PostFieldProvider {
 
   void setDescription(String description) {
     post = post.copyWith(description:description );
+    post= post.copyWith(likes: [""]);
   }
   void setId(String id) {
     post = post.copyWith(id: id );

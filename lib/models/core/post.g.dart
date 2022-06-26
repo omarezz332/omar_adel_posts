@@ -11,9 +11,10 @@ Posts _$PostsFromJson(Map<String, dynamic> json) => Posts(
       image: json['image'] as String?,
       description: json['description'] as String?,
       userId: json['userId'] as String?,
-      likes: json['likes'] as int?,
+      likes: json['likes'] as List<dynamic>?,
       isLiked: json['isLiked'] as bool?,
       isSaved: json['isSaved'] as bool?,
+      saves: json['saves'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$PostsToJson(Posts instance) => <String, dynamic>{
@@ -22,6 +23,7 @@ Map<String, dynamic> _$PostsToJson(Posts instance) => <String, dynamic>{
       'description': instance.description,
       'userId': instance.userId,
       'likes': instance.likes,
+      'saves': instance.saves,
       'isLiked': instance.isLiked,
       'isSaved': instance.isSaved,
     };

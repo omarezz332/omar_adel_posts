@@ -5,13 +5,14 @@ import 'package:json_annotation/json_annotation.dart';
 part 'post.g.dart';
 @JsonSerializable(explicitToJson: true,)
 class Posts {
- final String? id;
- final String? image;
- final String? description;
- final String? userId;
- final int? likes;
- final bool? isLiked;
- final bool? isSaved;
+  String? id;
+  String? image;
+  String? description;
+  String? userId;
+  List<dynamic> ?likes=[""];
+  List<dynamic> ?saves=[""];
+  bool? isLiked;
+  bool? isSaved;
 
   Posts ({
     this.id,
@@ -21,24 +22,27 @@ class Posts {
     this.likes,
     this.isLiked,
     this.isSaved,
+    this.saves,
   });
   Posts copyWith({
     String? id,
     String? image,
     String? description,
     String? userId,
-    int? likes,
+    List<String>? likes,
     bool? isLiked,
     bool? isSaved,
+    List<String>? saves,
   }) {
     return Posts(
       id: id ?? this.id,
       image: image ?? this.image,
       description: description ?? this.description,
       userId: userId ?? this.userId,
-      likes: likes ?? 2,
+      likes: likes ?? [""],
       isLiked: isLiked ?? false,
       isSaved: isSaved ?? false,
+      saves: saves ?? [""],
     );
   }
   factory Posts.fromJson(Map<String, dynamic> json) => _$PostsFromJson(json);
