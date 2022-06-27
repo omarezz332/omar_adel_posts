@@ -28,6 +28,14 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
     final fieldProvider = ref.read(registerFieldProviderRef);
     return Scaffold(
+      backgroundColor: context.colorScheme.background,
+
+      appBar: AppBar(
+        foregroundColor:context.theme.primaryColor,
+
+        backgroundColor: context.colorScheme.background,
+        elevation: 0,
+        title: Text(LocaleKeys.user_actions_register.tr(),style: TextStyle(color: context.theme.primaryColor,),),),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 32.w),
@@ -41,8 +49,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   customTextFieldModel: CustomTextFieldModel(
                     validator: (value) => value!.validate([validateRequired]),
                     label: LocaleKeys.user_actions_full_name.tr(),
-                    borderInIcon: true,
-                    prefixIcon: const Icon(Icons.person_outline),
+
                     // onSave: (value) => fieldProvider.(value!),
                   ),
                 ),
@@ -52,8 +59,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                         .trim()
                         .validate([validateRequired, validateEmail]),
                     label: LocaleKeys.user_actions_email.tr(),
-                    borderInIcon: true,
-                    prefixIcon: const Icon(Icons.mail_outline),
+
                     onSave: (value) => fieldProvider.setEmail(value!.trim()),
                   ),
                 ),
@@ -64,8 +70,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     validator: (value) =>
                         value!.validate([validateRequired, validatePassword]),
                     label: LocaleKeys.user_actions_password.tr(),
-                    borderInIcon: true,
-                    prefixIcon: const Icon(Icons.lock_open),
+
                     onSave: (value) => fieldProvider.setPassword(value!),
                   ),
                 ),
@@ -75,8 +80,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     validator: (value) =>
                         matchesPasswords(value!, passwordController.text),
                     label: LocaleKeys.user_actions_password_confirmation.tr(),
-                    borderInIcon: true,
-                    prefixIcon: const Icon(Icons.lock_open),
+
                    // onSave: (value) =>
                         //fieldProvider.setPasswordConfirmation(value!),
                   ),

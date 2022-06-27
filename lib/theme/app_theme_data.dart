@@ -14,10 +14,11 @@ ThemeData getThemeData(ThemeFlavor themeFlavor, {required bool isAr}) {
     fontFamily: isAr ? 'Almarai' : 'segoe',
     primaryColor:isLight? kPrimaryColor:kDarkPrimaryColor ,
     backgroundColor: isLight ? kGreyColor : kDarkBackgroundColor,
+
     scaffoldBackgroundColor: kBackgroundColor,
     canvasColor: kCanvasColor,
     errorColor: kErrorColor,
-    dividerColor: kDividerColor,
+    dividerColor: kDarkGreyColor,
     selectedRowColor: kSelectedColor,
     disabledColor: kDisabledColor,
     hintColor: kHintColor,

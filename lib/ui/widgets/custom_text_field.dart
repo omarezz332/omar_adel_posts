@@ -37,6 +37,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
           kVerticalSizedBoxXXSmall,
           TextFormField(
+
             maxLength: widget.customTextFieldModel.maxLength,
             enabled: widget.customTextFieldModel.enabled,
             style: context.textTheme.labelLarge,
@@ -53,12 +54,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
             maxLines: widget.customTextFieldModel.maxLine,
             onSaved: widget.customTextFieldModel.onSave,
             decoration: InputDecoration(
+              fillColor: context.theme.splashColor, filled: true,
+
               contentPadding: widget.customTextFieldModel.borderInIcon
                   ? const EdgeInsets.symmetric(vertical: 12, horizontal: 4)
                   : const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
               border: widget.customTextFieldModel.borderInIcon
                   ? null
                   : OutlineInputBorder(
+
                       borderRadius: BorderRadius.circular(kRadiusSmall),
                       borderSide: BorderSide(color: context.theme.hoverColor),
                     ),
@@ -89,7 +93,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       },
                       icon: Icon(
                         !obscure ? Icons.visibility_off : Icons.visibility,
-                        color: context.theme.dividerColor,
+                        color: context.theme.backgroundColor,
                       ),
                     )
                   : widget.customTextFieldModel.isSearch

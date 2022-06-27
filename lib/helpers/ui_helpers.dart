@@ -48,8 +48,7 @@ class UiHelpers {
   }
 
   // Show Alert Dialog
-  static void showSimpleAlertDialog({
-    required BuildContext context,
+  static void showSimpleAlertDialog(BuildContext context, {
     required VoidCallback action,
     required String message,
     required String okButtonText,

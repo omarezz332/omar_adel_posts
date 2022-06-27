@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
- Color kPrimaryColor = Color(	fromHex("#15567C"));
- Color kSecondaryColor = Color(fromHex("#F26D33"));
- Color kBackgroundColor = Color(fromHex("#F5F5F5"));
- Color kCanvasColor = Color(fromHex("#9C9A99"));
- Color kGreyColor = Color(fromHex("#9CB3BE"));
+
+Color kPrimaryColor = Color(fromHex("#15567C"));
+Color kSecondaryColor = Color(fromHex("#F26D33"));
+Color kBackgroundColor = Color(fromHex("#F5F5F5"));
+Color kCanvasColor = Color(fromHex("#F5F5F5"));
+Color kGreyColor = Color(fromHex("#9CB3BE"));
+Color kDarkGreyColor = Color(fromHex("#585858"));
 const Color kErrorColor = Color(0xFFFF1572);
 const Color kIconColor = Color(0xFF707070);
 const Color kDividerColor = Color(0xFFE2E2E2);

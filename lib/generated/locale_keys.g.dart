@@ -8,6 +8,8 @@ abstract class  LocaleKeys {
   static const user_actions_saved_posts = 'user_actions.saved_posts';
   static const user_actions_no_saved_posts = 'user_actions.no_saved_posts';
   static const user_actions_login = 'user_actions.login';
+  static const user_actions_or = 'user_actions.or';
+
   static const user_actions_register = 'user_actions.register';
   static const user_actions_signup = 'user_actions.signup';
   static const user_actions_forget_password = 'user_actions.forget_password';
@@ -19,7 +21,8 @@ abstract class  LocaleKeys {
   static const user_actions_image = 'user_actions.image';
   static const user_actions_youtube_link = 'user_actions.youtube_link';
   static const user_actions_logout = 'user_actions.logout';
-  static const user_actions_poke = 'user_actions.poke';
+    static const user_actions_logout_button = 'user_actions.logout_button';
+  static const user_actions_poke = 'user_actionsuser_actions_logout.poke';
   static const user_actions_delete = 'user_actions.delete';
   static const user_actions_accept = 'user_actions.accept';
   static const user_actions_reject = 'user_actions.reject';

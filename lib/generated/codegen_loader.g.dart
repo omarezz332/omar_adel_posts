@@ -21,6 +21,7 @@ class CodegenLoader extends AssetLoader{
   "user_actions": {
     "change_language": "تغيير اللغة",
     "login": "تسجيل الدخول",
+    "or": "أو",
     "register": "تسجيل حساب جديد",
     "signup": "تسجيل حساب جديد",
     "forget_password": "نسيت كلمة المرور",
@@ -147,9 +148,8 @@ class CodegenLoader extends AssetLoader{
   },
   "alerts": {
     "logout": "هل انت متأكد من الخروج من حسابك ؟",
-    "logout_button": "تسجيل الخروج",
 
-    "do_not_have_account": "ليس لديك حساب ؟",
+    "do_not_have_account": "إذا لم يكن لديك حساب قم بالتسجيل",
     "password_success_changed": "تم تعديل كلمة المرور بنجاح",
     "data_success_added": "تم اضافة البيانات بنجاح",
     "data_success_edited": "تم تحديث البيانات بنجاح",
@@ -204,6 +204,7 @@ static const Map<String,dynamic> en = {
     "login": "Login",
     "register": "Register",
     "signup": "Sign up",
+    "or": "or",
     "forget_password": "Forget password",
     "password": "Password",
     "password_confirmation": "Confirm password",
@@ -212,8 +213,8 @@ static const Map<String,dynamic> en = {
     "phone": "Phone",
     "image": "Image",
     "youtube_link": "Youtube link",
-    "logout": "Logout",
-    "logout_button": "تسجيل الخروج",
+    "logout": "are you sure you want to logout?",
+    "logout_button": "Logout",
     "poke": "Poke",
     "delete": "Delete",
     "accept": "Accept",

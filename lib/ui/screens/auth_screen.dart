@@ -1,5 +1,3 @@
-
-
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +11,14 @@ import 'package:omar_adel_posts/ui/widgets/custom_text_field.dart';
 
 import '../../data/remote/apis/authentication_api.dart';
 import '../../generated/locale_keys.g.dart';
+import '../../helpers/sized_boxes.dart';
 import '../../helpers/ui_helpers.dart';
 import '../../providers/authentication_provider/authentication_notifier.dart';
 import '../../providers/authentication_provider/authentication_state.dart';
 import '../../providers/fields_providers/login_field_provider.dart';
 import '../../providers/fields_providers/register_field_provider.dart';
 import '../../router/custom_router.gr.dart';
+import '../../theme/dimensions.dart';
 import '../widgets/custom_elevated_button.dart';
 
 class AuthScreen extends ConsumerStatefulWidget {
@@ -46,6 +46,18 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       }
     });
     return Scaffold(
+      backgroundColor: context.colorScheme.background,
+      appBar: AppBar(
+        backgroundColor: context.colorScheme.background,
+        elevation: 0,
+        title: Center(
+            child: Text(
+          LocaleKeys.user_actions_login.tr(),
+          style: TextStyle(
+            color: context.theme.primaryColor,
+          ),
+        )),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 32.w),
@@ -54,7 +66,6 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               children: [
-
                 CustomTextField(
                   customTextFieldModel: CustomTextFieldModel(
                     validator: (value) => value!
@@ -62,8 +73,6 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                         .validate([validateRequired, validateEmail]),
                     textInputType: TextInputType.emailAddress,
                     label: LocaleKeys.user_actions_email.tr(),
-                    borderInIcon: true,
-                    prefixIcon: const Icon(Icons.mail_outline),
                     onSave: (value) => fieldProvider.setEmail(value!.trim()),
                   ),
                 ),
@@ -73,8 +82,6 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     validator: (value) =>
                         value!.validate([validateRequired, validatePassword]),
                     label: LocaleKeys.user_actions_password.tr(),
-                    borderInIcon: true,
-                    prefixIcon: const Icon(Icons.lock_open),
                     onSave: (value) => fieldProvider.setPassword(value!),
                   ),
                 ),
@@ -83,11 +90,9 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8.w),
                     child: TextButton(
-                      onPressed: () {
-
-                      },
-                          // AutoRouter.of(context)
-                          // .push(const ForgetPasswordRoute()),
+                      onPressed: () {},
+                      // AutoRouter.of(context)
+                      // .push(const ForgetPasswordRoute()),
                       child: Text(LocaleKeys.user_actions_forget_password.tr()),
                     ),
                   ),
@@ -95,7 +100,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 Consumer(
                   builder: (_, ref, __) {
                     final loading = ref.watch(authenticationNotifierProvider)
-                    is AuthenticationLoading;
+                        is AuthenticationLoading;
                     return CustomElevatedButton(
                       loading: loading,
                       onTap: () {
@@ -110,19 +115,56 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     );
                   },
                 ),
-                Row(
+                Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       LocaleKeys.alerts_do_not_have_account.tr(),
-                      style: context.textTheme.headline5,
+                      style: context.textTheme.titleMedium?.copyWith(
+                        color: context.theme.dividerColor,
+                      ),
                     ),
-                    TextButton(
+                    kVerticalSizedBoxMedium,
+                    OutlinedButton.icon(
                       onPressed: () =>
                           AutoRouter.of(context).push(const RegisterRoute()),
-                      child: Text(
-                        LocaleKeys.user_actions_sign_up_now.tr(),
-                        style: context.textButtonUnderLine,
+                      style: ButtonStyle(
+
+                        // backgroundColor: MaterialStateProperty.all<Color>(
+                        //   context.theme.colorScheme.secondary,
+                        // ),
+                        overlayColor: MaterialStateProperty.all<Color>(
+                          context.theme.colorScheme.secondary,
+                        ),
+
+
+                        textStyle: MaterialStateProperty.all<TextStyle>(
+                            const TextStyle(
+                          color: Colors.white,
+                        )),
+                        fixedSize: MaterialStateProperty.all(
+                            Size(context.width, 45.h)),
+                        side: MaterialStateProperty.all(
+                            BorderSide(
+                          color: context.theme.colorScheme.secondary,
+                          width: 1.w,
+                        )),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+
+                            borderRadius: BorderRadius.circular(kRadiusLarge),
+
+                          ),
+                        ),
+                      ),
+                      label: Text(
+                        LocaleKeys.user_actions_register.tr(),
+                        style: TextStyle(color: context.theme.colorScheme.secondary),
+                      ),
+                      icon: Icon(
+                        Icons.person_add_outlined,
+                        color: context.theme.colorScheme.secondary,
                       ),
                     )
                   ],
@@ -136,33 +178,4 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   }
 //widget signup with email and password
 
-}
-
-Widget _signUpWithEmailAndPassword() {
-  return Column(
-    children: <Widget>[
-      const TextField(
-        decoration: InputDecoration(
-          labelText: 'Email',
-          labelStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-          ),
-        ),
-      ),
-      const TextField(
-        decoration: InputDecoration(
-          labelText: 'Password',
-          labelStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-          ),
-        ),
-      ),
-      ElevatedButton(
-        child: const Text('Sign Up'),
-        onPressed: () {},
-      ),
-    ],
-  );
 }

@@ -67,7 +67,7 @@ class PostsNotifier extends StateNotifier<PostsState> {
   List<Posts> get savedPosts {
     List<Posts> _savedPosts = [];
     _postsRepositoryProvider.posts.forEach((post) {
-      if (post.saves!.contains(_tokenRepositoryProvider.token)) {
+      if (post.saves?.contains(_tokenRepositoryProvider.token)==true) {
         _savedPosts.add(post);
       }
     });

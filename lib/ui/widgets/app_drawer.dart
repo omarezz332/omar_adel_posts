@@ -74,7 +74,7 @@ class AppDrawer extends ConsumerWidget {
             },
           ),
           ListTile(
-            title: Text(LocaleKeys.alerts_logout.tr()),
+            title: Text(LocaleKeys.user_actions_logout.tr()),
             leading: Icon(Icons.exit_to_app),
             onTap: () {
               showDialog(
