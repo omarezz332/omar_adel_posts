@@ -45,6 +45,7 @@ class PostsNotifier extends StateNotifier<PostsState> {
   Future<void> init() async {
 
       if (_postsRepositoryProvider.posts.isEmpty) {
+
         state = const PostsLoading();
         log("trying to get posts");
         final Map map = await _api.fetchPosts();
@@ -78,6 +79,7 @@ class PostsNotifier extends StateNotifier<PostsState> {
   Future<void> addPost() async {
     state = const PostsLoading();
     try {
+      _postFieldProvider.setUid(_tokenRepositoryProvider.token);
    final response = await _api.addPost(
           _postFieldProvider.post, _tokenRepositoryProvider.token);
    _postFieldProvider.post.id=json.decode(response.body)['name'];
@@ -95,7 +97,7 @@ class PostsNotifier extends StateNotifier<PostsState> {
     try {
       await _api.updatePosts(
           post, _tokenRepositoryProvider.token);
-      _postsRepositoryProvider.posts.add(_postFieldProvider.post);
+      //_postsRepositoryProvider.posts.add(_postFieldProvider.post);
       final Map map = await _api.fetchPosts();
       _postsRepositoryProvider.setPost(map['posts'], map['extractedData']);
       state = const Posted();

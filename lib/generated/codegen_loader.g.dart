@@ -24,6 +24,7 @@ class CodegenLoader extends AssetLoader{
     "or": "أو",
     "register": "تسجيل حساب جديد",
     "signup": "تسجيل حساب جديد",
+    "home_page": "الصفحة الرئيسية",
     "forget_password": "نسيت كلمة المرور",
     "password": "كلمة المرور",
     "password_confirmation": "تأكيد كلمة المرور",
@@ -200,6 +201,7 @@ static const Map<String,dynamic> en = {
   "english": "English",
   "arabic": "العربية",
   "user_actions": {
+    "home_page": "Home page",
     "change_language": "Change language",
     "login": "Login",
     "register": "Register",

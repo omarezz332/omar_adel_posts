@@ -73,7 +73,7 @@ final response = await http.get(url);
   @override
   Future updatePosts(Posts post, String token) async{
 
-    final url = Uri.parse('https://omaradelposts-default-rtdb.firebaseio.com/posts/$token/${post.id}.json');
+    final url = Uri.parse('https://omaradelposts-default-rtdb.firebaseio.com/posts/${post.userId}/${post.id}.json');
     final response = await http.patch(url,body: json.encode(post.toJson()));
     log("updateLikes : ${response.body.toString()}");
     return response;

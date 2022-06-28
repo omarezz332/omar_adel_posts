@@ -9,7 +9,7 @@ abstract class  LocaleKeys {
   static const user_actions_no_saved_posts = 'user_actions.no_saved_posts';
   static const user_actions_login = 'user_actions.login';
   static const user_actions_or = 'user_actions.or';
-
+  static const user_actions_home_page = 'user_actions.home_page';
   static const user_actions_register = 'user_actions.register';
   static const user_actions_signup = 'user_actions.signup';
   static const user_actions_forget_password = 'user_actions.forget_password';
@@ -45,7 +45,6 @@ abstract class  LocaleKeys {
   static const user_actions_search = 'user_actions.search';
   static const user_actions_wishlist = 'user_actions.wishlist';
   static const user_actions_plan_trips = 'user_actions.plan_trips';
-  static const user_actions_profile = 'user_actions.profile';
   static const user_actions_sign_in = 'user_actions.sign_in';
   static const user_actions_about_me = 'user_actions.about_me';
   static const user_actions_security = 'user_actions.security';
@@ -82,7 +81,8 @@ abstract class  LocaleKeys {
   static const user_actions_write_commint= 'user_actions.write_commint';
   static const user_actions_upload_image= 'user_actions.upload_image';
   static const user_actions_ignore= 'user_actions.ignore';
-  static const user_actions_Main= 'user_actions.Main';
+  static const  user_actions_Main= 'user_actions.Main';
+  static const user_actions_profile= 'user_actions.profile';
   static const user_actions_no = 'user_actions.no';
   static const user_actions_cancel = 'user_actions.cancel';
   static const user_actions_add_stop = 'user_actions.add_stop';

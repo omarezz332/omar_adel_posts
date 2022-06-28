@@ -6,6 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:omar_adel_posts/helpers/extensions.dart';
 import 'package:omar_adel_posts/models/core/post.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:omar_adel_posts/ui/screens/postsScreen.dart';
+import 'package:omar_adel_posts/ui/screens/profileScreen.dart';
 
 import '../../generated/locale_keys.g.dart';
 import '../../providers/posts_provider/posts_notifier.dart';
@@ -26,36 +28,61 @@ class _MyHomePageState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     ref.read(postsNotifierProvider.notifier).init();
-    return Scaffold(
-      backgroundColor: context.theme.scaffoldBackgroundColor,
-      appBar: AppBar(
-        title: Text(LocaleKeys.user_actions_Main.tr()),
+    var titleName= LocaleKeys.user_actions_Main.tr();
+    return DefaultTabController(
+      length: 2,
+      initialIndex: 0,
+    //  animationDuration: const Duration(milliseconds: 300),
+      child: Scaffold(
+        backgroundColor: context.theme.scaffoldBackgroundColor,
+        appBar: AppBar(
+          bottom: TabBar(
+            //  indicatorSize: TabBarIndicatorSize.label,
+            labelColor:Colors.white,
+
+            unselectedLabelColor: Colors.white,
+            indicatorColor: Colors.white,
+            onTap: (index) {
+              if (index == 0) {
+                titleName = LocaleKeys.user_actions_Main.tr();
+
+
+              } else {
+                titleName = LocaleKeys.user_actions_Main.tr();
+              }
+              setState(() {});
+            },
+
+            // indicator: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(17), //
+            //     // Creates border
+            //     color: Colors.white),
+            tabs:  [
+              Tab(
+                text: LocaleKeys.user_actions_Main.tr(),
+              ),
+              Tab(
+                text:   LocaleKeys.user_actions_profile.tr(),
+              ),
+
+            ],
+          ),
+        ),
+
+        drawer: AppDrawer(),
+        body:TabBarView(
+
+          children: const [
+            PostsScreen(),
+            ProfileScreen(),
+          ],
+
+        ), //
+
+
+        //body:,
       ),
-
-      drawer: AppDrawer(),
-      body: _getposts(),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) => const CreatePostDialog(),
-          );
-        },
-        tooltip: LocaleKeys.user_actions_publish.tr(),
-        child: const Icon(Icons.add),
-      ),
-
-      //body:,
     );
   }
 
-  Widget _getposts() {
-    return Consumer(builder: (_, ref, __) {
-      var loading = ref.watch(postsNotifierProvider) is PostsLoading ;
-
-      return loading ? const Center(child: CircularProgressIndicator())
-          : CustomList();
-    });
-  }
 }

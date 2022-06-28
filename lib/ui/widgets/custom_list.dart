@@ -1,16 +1,16 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:flutter_animator/flutter_animator.dart';
+import 'package:flutter_animator/widgets/attention_seekers/bounce.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:share_plus/share_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:omar_adel_posts/providers/posts_provider/posts_state.dart';
 import '../../helpers/extensions.dart';
-import '../../helpers/sized_boxes.dart';
 import '../../models/core/post.dart';
 import '../../providers/posts_provider/posts_notifier.dart';
 import '../../providers/posts_provider/token_repository_provider.dart';
 import '../../providers/token_repository_provider.dart';
-import '../../theme/dimensions.dart';
 
 class CustomList extends ConsumerStatefulWidget {
   const CustomList({Key? key}) : super(key: key);
@@ -26,42 +26,50 @@ class _CustomListState extends ConsumerState<CustomList> {
   Widget build(BuildContext context) {
     posts = ref.watch(postsRepositoryProvider.notifier).posts;
 
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: ListView.builder(
-          itemCount: posts.length,
-          itemBuilder: (context, index) {
-            return Card(
-              color: Colors.white,
-              elevation:10,
-              child: Column(
-                children: [
-                  _iconeRow(posts, index),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ClipRRect(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(15.0)),
-                      child: Image.memory(
-                        base64Decode(posts[index].image!),
-                        height: ScreenUtil().setHeight(200),
-                        width: ScreenUtil().setWidth(350),
-                        fit: BoxFit.cover,
+    return FadeInDown(
+
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: ListView.builder(
+            itemCount: posts.length,
+            itemBuilder: (context, index) {
+              return Card(
+                color: Colors.white,
+                elevation: 10,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  children: [
+                    _iconeRow(posts, index),
+                    Bounce(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(15.0)),
+                          child: Image.memory(
+                            base64Decode(posts[index].image ?? ''),
+                            height: ScreenUtil().setHeight(200),
+                            width: ScreenUtil().setWidth(350),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(posts[index].description!,
-                        style: TextStyle(
-                          fontSize: ScreenUtil().setSp(20),
-                          color: context.theme.primaryColor,
-                        )),
-                  ),
-                ],
-              ),
-            );
-          }),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(posts[index].description ?? '',
+                          style: TextStyle(
+                            fontSize: ScreenUtil().setSp(20),
+                            color: context.theme.primaryColor,
+                          )),
+                    ),
+                  ],
+                ),
+              );
+            }),
+      ),
     );
   }
 
@@ -88,41 +96,56 @@ class _CustomListState extends ConsumerState<CustomList> {
               children: [
                 IconButton(
                   icon: const Icon(Icons.share),
-                  onPressed: () {},
+                  onPressed: () {
+                    Size size = MediaQuery.of(context).size;
+
+                    Share.share(
+
+                      posts[index].description ?? '',
+                      subject: 'Share',
+                      sharePositionOrigin: Rect.fromLTWH(
+                        0,
+                        0,
+                        size.width,
+                        size.height / 2,
+                      ),
+                    );
+                  },
                 ),
+
                 const Text("")
               ],
             ),
-            Column(
-              children: [
-                IconButton(
-                    icon: Icon(
-                      Icons.bookmark,
-                      color: saved == true
-                          ? context.theme.primaryColor
-                          : context.theme.backgroundColor,
-                    ),
-                    onPressed: () {
-                      if (posts[index].saves != null) {
-                        if (saved == false) {
-                          posts[index].saves?.add(token);
-
-                        } else {
-                          posts[index].saves?.remove(token);
-
-                        }
-                        ref
-                            .read(postsRepositoryProvider.notifier)
-                            .updatePosts(posts);
-                        ref
-                            .read(postsNotifierProvider.notifier)
-                            .updatePost(posts[index]);
-                        setState(() {});
-                      }
-                    }),
-                const Text("")
-              ],
-            ),
+            token != posts[index].userId
+                ? Column(
+                    children: [
+                      IconButton(
+                          icon: Icon(
+                            Icons.bookmark,
+                            color: saved == true
+                                ? context.theme.primaryColor
+                                : context.theme.backgroundColor,
+                          ),
+                          onPressed: () {
+                            if (posts[index].saves != null) {
+                              if (saved == false) {
+                                posts[index].saves?.add(token);
+                              } else {
+                                posts[index].saves?.remove(token);
+                              }
+                              ref
+                                  .read(postsRepositoryProvider.notifier)
+                                  .updatePosts(posts);
+                              ref
+                                  .read(postsNotifierProvider.notifier)
+                                  .updatePost(posts[index]);
+                              setState(() {});
+                            }
+                          }),
+                      const Text("")
+                    ],
+                  )
+                : Container(),
             Column(
               children: [
                 IconButton(

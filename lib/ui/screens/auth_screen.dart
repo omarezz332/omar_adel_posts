@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animator/widgets/attention_seekers/heart_beat.dart';
+import 'package:flutter_animator/widgets/bouncing_entrances/bounce_in.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:omar_adel_posts/helpers/extensions.dart';
 import 'package:omar_adel_posts/helpers/fields_validator.dart';
@@ -58,118 +60,121 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
           ),
         )),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 32.w),
-          child: Form(
-            key: fieldProvider.loginKey,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            child: Column(
-              children: [
-                CustomTextField(
-                  customTextFieldModel: CustomTextFieldModel(
-                    validator: (value) => value!
-                        .trim()
-                        .validate([validateRequired, validateEmail]),
-                    textInputType: TextInputType.emailAddress,
-                    label: LocaleKeys.user_actions_email.tr(),
-                    onSave: (value) => fieldProvider.setEmail(value!.trim()),
-                  ),
-                ),
-                CustomTextField(
-                  customTextFieldModel: CustomTextFieldModel(
-                    isPassword: true,
-                    validator: (value) =>
-                        value!.validate([validateRequired, validatePassword]),
-                    label: LocaleKeys.user_actions_password.tr(),
-                    onSave: (value) => fieldProvider.setPassword(value!),
-                  ),
-                ),
-                Align(
-                  alignment: AlignmentDirectional.centerEnd,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w),
-                    child: TextButton(
-                      onPressed: () {},
-                      // AutoRouter.of(context)
-                      // .push(const ForgetPasswordRoute()),
-                      child: Text(LocaleKeys.user_actions_forget_password.tr()),
+      body: BounceIn(
+
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32.w),
+            child: Form(
+              key: fieldProvider.loginKey,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              child: Column(
+                children: [
+                  CustomTextField(
+                    customTextFieldModel: CustomTextFieldModel(
+                      validator: (value) => value!
+                          .trim()
+                          .validate([validateRequired, validateEmail]),
+                      textInputType: TextInputType.emailAddress,
+                      label: LocaleKeys.user_actions_email.tr(),
+                      onSave: (value) => fieldProvider.setEmail(value!.trim()),
                     ),
                   ),
-                ),
-                Consumer(
-                  builder: (_, ref, __) {
-                    final loading = ref.watch(authenticationNotifierProvider)
-                        is AuthenticationLoading;
-                    return CustomElevatedButton(
-                      loading: loading,
-                      onTap: () {
-                        if (fieldProvider.validate()) {
-                          ref
-                              .read(authenticationNotifierProvider.notifier)
-                              .login();
-                        }
-                      },
-                      width: context.widthR(0.5),
-                      title: LocaleKeys.user_actions_login.tr().toUpperCase(),
-                    );
-                  },
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      LocaleKeys.alerts_do_not_have_account.tr(),
-                      style: context.textTheme.titleMedium?.copyWith(
-                        color: context.theme.dividerColor,
+                  CustomTextField(
+                    customTextFieldModel: CustomTextFieldModel(
+                      isPassword: true,
+                      validator: (value) =>
+                          value!.validate([validateRequired, validatePassword]),
+                      label: LocaleKeys.user_actions_password.tr(),
+                      onSave: (value) => fieldProvider.setPassword(value!),
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.w),
+                      child: TextButton(
+                        onPressed: () {},
+                        // AutoRouter.of(context)
+                        // .push(const ForgetPasswordRoute()),
+                        child: Text(LocaleKeys.user_actions_forget_password.tr()),
                       ),
                     ),
-                    kVerticalSizedBoxMedium,
-                    OutlinedButton.icon(
-                      onPressed: () =>
-                          AutoRouter.of(context).push(const RegisterRoute()),
-                      style: ButtonStyle(
-
-                        // backgroundColor: MaterialStateProperty.all<Color>(
-                        //   context.theme.colorScheme.secondary,
-                        // ),
-                        overlayColor: MaterialStateProperty.all<Color>(
-                          context.theme.colorScheme.secondary,
+                  ),
+                  Consumer(
+                    builder: (_, ref, __) {
+                      final loading = ref.watch(authenticationNotifierProvider)
+                          is AuthenticationLoading;
+                      return CustomElevatedButton(
+                        loading: loading,
+                        onTap: () {
+                          if (fieldProvider.validate()) {
+                            ref
+                                .read(authenticationNotifierProvider.notifier)
+                                .login();
+                          }
+                        },
+                        width: context.widthR(0.5),
+                        title: LocaleKeys.user_actions_login.tr().toUpperCase(),
+                      );
+                    },
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        LocaleKeys.alerts_do_not_have_account.tr(),
+                        style: context.textTheme.titleMedium?.copyWith(
+                          color: context.theme.dividerColor,
                         ),
+                      ),
+                      kVerticalSizedBoxMedium,
+                      OutlinedButton.icon(
+                        onPressed: () =>
+                            AutoRouter.of(context).push(const RegisterRoute()),
+                        style: ButtonStyle(
+
+                          // backgroundColor: MaterialStateProperty.all<Color>(
+                          //   context.theme.colorScheme.secondary,
+                          // ),
+                          overlayColor: MaterialStateProperty.all<Color>(
+                            context.theme.colorScheme.secondary,
+                          ),
 
 
-                        textStyle: MaterialStateProperty.all<TextStyle>(
-                            const TextStyle(
-                          color: Colors.white,
-                        )),
-                        fixedSize: MaterialStateProperty.all(
-                            Size(context.width, 45.h)),
-                        side: MaterialStateProperty.all(
-                            BorderSide(
-                          color: context.theme.colorScheme.secondary,
-                          width: 1.w,
-                        )),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                          textStyle: MaterialStateProperty.all<TextStyle>(
+                              const TextStyle(
+                            color: Colors.white,
+                          )),
+                          fixedSize: MaterialStateProperty.all(
+                              Size(context.width, 45.h)),
+                          side: MaterialStateProperty.all(
+                              BorderSide(
+                            color: context.theme.colorScheme.secondary,
+                            width: 1.w,
+                          )),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
 
-                            borderRadius: BorderRadius.circular(kRadiusLarge),
+                              borderRadius: BorderRadius.circular(kRadiusLarge),
 
+                            ),
                           ),
                         ),
-                      ),
-                      label: Text(
-                        LocaleKeys.user_actions_register.tr(),
-                        style: TextStyle(color: context.theme.colorScheme.secondary),
-                      ),
-                      icon: Icon(
-                        Icons.person_add_outlined,
-                        color: context.theme.colorScheme.secondary,
-                      ),
-                    )
-                  ],
-                )
-              ],
+                        label: Text(
+                          LocaleKeys.user_actions_register.tr(),
+                          style: TextStyle(color: context.theme.colorScheme.secondary),
+                        ),
+                        icon: Icon(
+                          Icons.person_add_outlined,
+                          color: context.theme.colorScheme.secondary,
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),

@@ -52,19 +52,13 @@ class AppDrawer extends ConsumerWidget {
             ),
           ),
           ListTile(
-            title: Text('الصفحة الرئيسية'),
+            title: Text(LocaleKeys.user_actions_home_page.tr()),
             leading: Icon(Icons.home),
             onTap: () {
               Navigator.pop(context);
             },
           ),
-          ListTile(
-            title: Text('الملف الشخصي'),
-            leading: Icon(Icons.person),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
+
           ListTile(
             title: Text(LocaleKeys.user_actions_saved_posts.tr()),
             leading: Icon(Icons.bookmark),

@@ -50,7 +50,6 @@ class _MyAppState extends State<MyApp> {
         designSize: const Size(414, 736),
         builder: (BuildContext context, Widget? child) {
           return OverlaySupport(
-
             child: MaterialApp.router(
               debugShowCheckedModeBanner: false,
               localizationsDelegates: context.localizationDelegates,

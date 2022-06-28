@@ -44,6 +44,7 @@ log('repositoryPosts: $repositoryPosts');
 
   Future<void> setPost(List<Posts> posts,Map<String,dynamic> extractedData) async {
     await _postsRepository.setPosts(extractedData);
+    _posts=[];
     _posts = posts;
     log('TokenRepositoryProvider: setToken: ${posts.length}');
     notifyListeners();

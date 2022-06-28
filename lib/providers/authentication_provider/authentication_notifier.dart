@@ -74,6 +74,7 @@ class AuthenticationNotifier extends StateNotifier<AuthenticationState> {
 
   Future<void> logout() async {
     _userRepository.delete();
+    FirebaseAuth.instance.signOut();
     _tokenRepositoryProvider.deleteToken();
     state = const UnAuthenticated();
   }
