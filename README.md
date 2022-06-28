@@ -7,7 +7,7 @@ social Media demo app which you can explore posts and do actions ( like , save o
 
 ## Tech Stack
 
-**Client:**  Flutter , StateManagement using riverpod, local storage 
+**Client:**  Flutter , StateManagement using riverpod + state notifier , local storage using shared preferences 
 
 **Server:** FireBase Authentication , RealTime DataBase
 
