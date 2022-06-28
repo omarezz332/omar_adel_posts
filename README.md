@@ -1,7 +1,8 @@
 
-# Project Title
+# OmarAdel Posts App
+social Media demo app which you can explore posts and do actions ( like , save or share ) and also you can add your own and share it with others.
 
-A brief description of what this project does and who it's for
+
 
 
 ## Tech Stack
