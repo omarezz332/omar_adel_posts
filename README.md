@@ -1,16 +1,29 @@
-# omar_adel_posts
 
-A new Flutter project.
+# Project Title
 
-## Getting Started
+A brief description of what this project does and who it's for
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Stack
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+**Client:**  Flutter , StateManagement using riverpod, local storage 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**Server:** FireBase Authentication , RealTime DataBase
+
+
+## Roadmap
+
+- signIn via firebase authentication .
+- Posts added to cloud via firebase RealTime database.
+- posts saved locally using shared_preferences and flutter_secure_storage
+- Actions on likes ,saves and sharing available.
+- App is responsive on mobile and tablet using flutter_screenutil.
+- App supports Arabic language using LocaleKey which we can switch to any language easily .
+- App written with a good clean architecture.
+
+
+
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+

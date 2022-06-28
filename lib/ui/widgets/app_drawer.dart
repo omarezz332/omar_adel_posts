@@ -17,7 +17,7 @@ import '../screens/my_saved_posts_screen.dart';
 class AppDrawer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(authenticationNotifierProvider.notifier).user;
+
     final user = (ref.watch(authenticationNotifierProvider.notifier)).user;
     return Drawer(
       backgroundColor: Colors.white,
@@ -44,7 +44,7 @@ class AppDrawer extends ConsumerWidget {
                   radius: 45.0.sp,
                 ),
                 Text(
-                  user?.email ?? "أسم المستخدم",
+                  user?.email ?? LocaleKeys.user_actions_user_name.tr(),
                   style: TextStyle(
                       color: Colors.white, fontSize: ScreenUtil().setSp(20)),
                 ),

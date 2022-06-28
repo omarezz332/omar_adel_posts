@@ -9,6 +9,7 @@ import '../../providers/posts_provider/posts_state.dart';
 import '../dialogs/create_post_dialog.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/custom_list.dart';
+import '../widgets/custom_loading_widget.dart';
 class PostsScreen extends ConsumerStatefulWidget {
   const PostsScreen({Key? key}) : super(key: key);
 
@@ -41,7 +42,7 @@ class _PostsScreenState extends ConsumerState<PostsScreen> {
     return Consumer(builder: (_, ref, __) {
       var loading = ref.watch(postsNotifierProvider) is PostsLoading ;
 
-      return loading ? const Center(child: CircularProgressIndicator())
+      return loading ? const Center(child: CustomLoadingWidget())
           : CustomList();
     });
   }

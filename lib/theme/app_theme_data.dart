@@ -53,6 +53,7 @@ ThemeData getThemeData(ThemeFlavor themeFlavor, {required bool isAr}) {
       headline1: headLine1,
       headline2: headLine2,
       subtitle2: subtitle2,
+
       button: button,
       overline: overLine,
       caption: caption,

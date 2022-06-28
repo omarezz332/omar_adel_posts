@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final headLine1 = TextStyle(
   fontSize: 20.sp,
- // fontFamily: "Almarai"
+  fontFamily: "Almarai"
 );
 
 final headLine2 = TextStyle(fontSize: 18.sp, fontFamily: 'Almarai');

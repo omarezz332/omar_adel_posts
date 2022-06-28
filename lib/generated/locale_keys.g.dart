@@ -10,6 +10,7 @@ abstract class  LocaleKeys {
   static const user_actions_login = 'user_actions.login';
   static const user_actions_or = 'user_actions.or';
   static const user_actions_home_page = 'user_actions.home_page';
+
   static const user_actions_register = 'user_actions.register';
   static const user_actions_signup = 'user_actions.signup';
   static const user_actions_forget_password = 'user_actions.forget_password';

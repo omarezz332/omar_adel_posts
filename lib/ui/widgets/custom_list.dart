@@ -81,7 +81,7 @@ class _CustomListState extends ConsumerState<CustomList> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         CircleAvatar(
-          backgroundColor: context.theme.backgroundColor,
+          backgroundColor: context.theme.backgroundColor  ,
           child: Icon(
             Icons.person,
             color: Colors.white,
@@ -95,7 +95,7 @@ class _CustomListState extends ConsumerState<CustomList> {
             Column(
               children: [
                 IconButton(
-                  icon: const Icon(Icons.share),
+                  icon:  Icon(Icons.share,color: context.theme.backgroundColor,),
                   onPressed: () {
                     Size size = MediaQuery.of(context).size;
 
@@ -177,7 +177,15 @@ class _CustomListState extends ConsumerState<CustomList> {
                         setState(() {});
                       }
                     }),
-                Text(posts[index].likes?.length.toString() ?? "0")
+                Container(
+                  color: context.theme.backgroundColor,
+                  width: ScreenUtil().setWidth(20),
+                  alignment: Alignment.center,
+
+                  child: Text(posts[index].likes?.length.toString() ?? "0",style: context.textTheme.labelMedium,),
+
+                ),
+
               ],
             ),
           ],
