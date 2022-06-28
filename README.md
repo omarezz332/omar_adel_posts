@@ -25,7 +25,7 @@ A brief description of what this project does and who it's for
 
 ## Screenshots
 
-![App Screenshot](https://github.com/omarezz332/omar_adel_posts/raw/master/assets/screen_shots/signup.jpeg=250x250)
+![App Screenshot](https://github.com/omarezz332/omar_adel_posts/raw/master/assets/screen_shots/signup.jpeg|width=100px])
 ![App Screenshot](https://github.com/omarezz332/omar_adel_posts/raw/master/assets/screen_shots/login.jpeg=250x250)
 ![App Screenshot](https://github.com/omarezz332/omar_adel_posts/raw/master/assets/screen_shots/posts.jpeg=250x250)
 ![App Screenshot](https://github.com/omarezz332/omar_adel_posts/raw/master/assets/screen_shots/profile.jpeg=250x250)
