@@ -17,22 +17,14 @@ class PostsRepositoryProvider extends ChangeNotifier {
   final IPostsRepository _postsRepository;
 
   PostsRepositoryProvider(this._postsRepository);
-
   List<Posts> _posts=[];
-  List<Posts>_savedPosts=[];
-
   List<Posts> get posts => _posts;
   void updatePosts(List<Posts> posts) {
     _posts=[];
     _posts = posts;
   }
-
-
-
-
   Future<List<Posts>> getPosts() async {
     final repositoryPosts = await _postsRepository.getPosts();
-
 log('repositoryPosts: $repositoryPosts');
     if (repositoryPosts != '') {
       _posts = repositoryPosts;

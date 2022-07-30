@@ -55,15 +55,7 @@ class PostsNotifier extends StateNotifier<PostsState> {
       else {
         await  _postsRepositoryProvider.getPosts();
       }
-
-
-
     state = const Posted();
-   // _postsRepositoryProvider.getPosts();
-    // if (_tokenRepositoryProvider.token.isNotEmpty) {
-    //   await _tokenRepositoryProvider.getToken();
-    //     state = Posted(_tokenRepositoryProvider.token);
-    // }
   }
   List<Posts> get savedPosts {
     List<Posts> _savedPosts = [];

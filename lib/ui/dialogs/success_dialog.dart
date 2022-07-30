@@ -55,7 +55,6 @@ class SuccessDialog extends ConsumerWidget {
     );
   }
 }
-
 void showSuccessDialog(
   BuildContext context,
   String title,

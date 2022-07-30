@@ -65,9 +65,6 @@ final response = await http.get(url);
       'posts': posts,
       'extractedData': extractedData,
     };
-     // final LoginData successResponse =
-    // LoginData.fromJson(response as Map<String, dynamic>);
-
    }
 
   @override
@@ -78,34 +75,4 @@ final response = await http.get(url);
     log("updateLikes : ${response.body.toString()}");
     return response;
   }
-
-
-//   @override
-//   Future<User?> login(LoginRequest request) async {
-//    // final url = Uri.parse(kPosts);
-//     final response = await _firebaseAuth.signInWithEmailAndPassword(email: request.email, password: request.password);
-//
-//     log(response.toString());
-// return response.user;
-//     // final LoginData successResponse =
-//     // LoginData.fromJson(response as Map<String, dynamic>);
-//
-//   }
-//
-//
-//   @override
-//   Future<User?> register(RegisterRequest request) async {
-//
-//       final url = Uri.parse("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=$fireBaseToken");
-//    // const uri = kSignUp;
-//     log( request.toJson().toString());
-//   //  final response = await http.post(url, body:  request.toJson());
-//
-//
-//       final response =await _firebaseAuth.createUserWithEmailAndPassword(email: request.email, password: request.password);
-//       log( response.toString());
-//    // final Null successResponse = null;
-//     //LoginData.fromJson(response as Map<String, dynamic>);
-//     return response.user;
-//   }
 }

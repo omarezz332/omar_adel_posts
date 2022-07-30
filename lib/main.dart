@@ -22,7 +22,8 @@ Future<void> main() async {
 
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(ProviderScope(
+  runApp(
+      ProviderScope(
     child: EasyLocalization(
       path: 'assets/translations',
       supportedLocales: const [Locale('ar')],
